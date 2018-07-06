@@ -15,3 +15,4 @@
 ## reference
 1. [Quick Reference](https://www.shellscript.sh/quickref.html)
 2. [practical tips](https://www.shellscript.sh/tips/)
+3. [best practice](http://fahdshariff.blogspot.com/2013/10/shell-scripting-best-practices.html#BP1)
