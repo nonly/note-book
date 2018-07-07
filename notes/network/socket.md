@@ -23,7 +23,7 @@
 
 Linux下创建子进程使用fork函数，Linux内核中，会复制文件描述符的列表，也会复制内存空间，还会复制当前程序执行位置的记录。显然，复制的时候都在调用fork，只是根据返回值区分是父进程和子进程。返回值是0就是子进程；返回值是其他整数，就是父进程。
 
-![进程复制过程](leanote://file/getImage?fileId=5b40457ec1953f7a13000000)
+![进程复制过程](../../images/network/WechatIMG39.jpeg)
 
 因为复制了文件描述符列表，而文件描述符都是指向整个内核统一的打开的文件列表的，因而父进程accept创建的已连接socket也是一个文件描述符，同样会被子进程获取。
 
@@ -32,7 +32,7 @@ Linux下创建子进程使用fork函数，Linux内核中，会复制文件描述
 ### 2. 多线程方式
 线程的创建和销毁比较重，采用多线程更加轻量级。Linux中通过pthread_create创建线程，内核中也是调用do_fork。不同的是，虽然新的线程会在task列表中新创建一项，但是很多资源，例如文件描述符和进程空间还是共享的，只是多出来一个引用而已。
 
-![线程创建过程](leanote://file/getImage?fileId=5b404788c1953f7a13000001)
+![线程创建过程](../../images/network/WechatIMG40.jpeg)
 
 新创建的线程通过已连接的socket处理请求，达到并发处理的目的。
 
@@ -46,7 +46,7 @@ socket是文件描述符，因而某个线程负责的所有socket，都放在�
 
 select的问题在于轮询的方式查看socket的变化，效率较低。如果用事件通知方式处理会好很多。epoll在内核中的实现不是通过轮询的方式，而是通过注册callback函数的方式，当某个文件描述符发生变化的时候，就会主动通知。
 
-![epoll](leanote://file/getImage?fileId=5b404a81c1953f7a13000002)
+![epoll](../../images/network/WechatIMG41.jpeg)
 
 如图所示，假设进程打开了多个socket文件，现在通过epoll监听socket是否有事件发生。epoll_create创建一个epoll对象，也是一个文件，同样对应着打开文件列表中的一项。在这项里面有一个红黑树，在红黑树里面保存着这个epoll要监听的所有的socket。
 
