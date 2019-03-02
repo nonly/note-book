@@ -1,6 +1,7 @@
 # 并查集(UnionFind)
 ### [200] Number of Islands
-* algorithms
+
+``` * algorithms
  * Medium (40.03%)
  * Total Accepted:    303.6K
  * Total Submissions: 754.1K
@@ -34,6 +35,8 @@
  * 
  * Output: 3
  * 
+ ```
+ 
  - **分析** 该题目至少有三种解法，UF/DFS/BFS，UF唯一需要注意的是union的条件(2D校验)&&union时根据rank缩短树的高度
  
 ```class Solution {
