@@ -4,12 +4,14 @@
 <!-- GFM-TOC -->
 
 
-### 并查集
+## 并查集
 
 并查集主要解决连通区域问题，UF唯一需要注意的是union的条件；
 《算法》中比较过quickFind和quickUnion，quickUnion时间复杂度占优，quickUnion时注意如何降低树的高度；
 
-**岛屿的数量  Number of Islands**
+#### 岛屿的数量
+
+**岛屿的数量  Number of Islands1**
 
 [200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
 
