@@ -1,34 +1,34 @@
 # 并查集(UnionFind)
 ### [200] Number of Islands
 
-``` * algorithms
- * Medium (40.03%)
- * Testcase Example:  '[["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]'
+```
+ Medium (40.03%)
+ Cost: 30min
 ```
  
- Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+ - Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 
-Example 1:
-```
-Input:
-11110
-11010
-11000
-00000
+ Example 1:
+ ```
+ Input:
+ 11110
+ 11010
+ 11000
+ 00000
 
-Output: 1
-```
-Example 2:
-```
-Input:
-11000
-11000
-00100
-00011
+ Output: 1
+ ```
+ Example 2:
+ ```
+ Input:
+ 11000
+ 11000
+ 00100
+ 00011
 
-Output: 3
+ Output: 3
 ```
- - **分析** 该题目至少有三种解法，UF/DFS/BFS，UF唯一需要注意的是union的条件(2D校验)&&union时根据rank缩短树的高度
+**分析** 该题目至少有三种解法，UF/DFS/BFS，UF唯一需要注意的是union的条件(2D校验)&&union时根据rank缩短树的高度
  
 ```class Solution {
     class UnionFind {
