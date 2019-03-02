@@ -43,18 +43,21 @@
 题目描述：2D网格中1为陆地，0为水面，计算岛屿的数量；岛屿是由连通的陆地组成并且被水包围；假设网格周围都为水面。
 
 
-> **分析** 该题目至少有三种解法，UF/DFS/BFS
+> **分析** 该题目至少有三种解法，UF/DFS/BFS; 如下UF解法-时间和空间复杂度均为**O(row * col)** 
  
 ```java
 class Solution {
     class UnionFind {
         private int[] union;
+        // 记录岛屿大小，即连通区域数量
         private int size = 0;
+        // 记录权重
         private int[] rank;
         public UnionFind(int n) {
             union = new int[n];
             rank = new int[n];
             for (int i = 0; i < n; i++) {
+                // **关键：-1表示不可用的连通区域；（不需要修改gird或者HashSet来记录访问过的区域）**
                 union[i] = -1;
             }
         }
@@ -97,10 +100,9 @@ class Solution {
     }
 
     public int numIslands(char[][] grid) {
-        int row  = grid.length;
-        if (row == 0) return 0;
+        if (grid.length == 0 || grid[0].length == 0) return 0;
+        int row = grid.length;
         int col = grid[0].length;
-        if (col == 0) return 0;     
         UnionFind unionFind = new UnionFind(row * col);
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
