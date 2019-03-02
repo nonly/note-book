@@ -5,10 +5,10 @@
 
 ### 并查集
 
-并查集主要解决连通区域问题，UF唯一需要注意的是union的条件(需要注意2D校验，一般情况上下左右&&某些条件才可以连通)
-在《算法》中，比较过quickFind和quickUnion，最终quickUnion时间复杂度占优，quickUnion时注意根据权重rank降低树的高度；
+并查集主要解决连通区域问题，UF唯一需要注意的是union的条件；
+《算法》中比较过quickFind和quickUnion，quickUnion时间复杂度占优，quickUnion时注意如何降低树的高度；
 
-### 岛屿的数量
+#### 岛屿的数量
 
 [200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
 
@@ -40,7 +40,7 @@
 题目描述：2D网格中1为陆地，0为水面，计算岛屿的数量；岛屿是由连通的陆地组成并且被水包围；假设网格周围都为水面。
 
 
-**分析** 该题目至少有三种解法，UF/DFS/BFS
+- **分析** 该题目至少有三种解法，UF/DFS/BFS
  
 ```java
 class Solution {
