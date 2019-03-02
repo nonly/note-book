@@ -1,15 +1,23 @@
-# 并查集(UnionFind)
-### [200] Number of Islands
+<!-- GFM-TOC -->
+* [并查集](#并查集)
+<!-- GFM-TOC -->
+
+
+### 并查集
+
+并查集主要解决连通区域问题，UF唯一需要注意的是union的条件(需要注意2D校验，一般情况上下左右&&某些条件才可以连通)
+在《算法》中，比较过quickFind和quickUnion，最终quickUnion时间复杂度占优，quickUnion时注意根据权重rank降低树的高度；
+
+### 岛屿的数量
+
+[200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
 
 ```
  Medium (40.03%)
  Cost: 30min
 ```
- 
- - Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
 
- Example 1:
- ```
+```html
  Input:
  11110
  11010
@@ -17,9 +25,9 @@
  00000
 
  Output: 1
- ```
- Example 2:
- ```
+```
+
+ ```html
  Input:
  11000
  11000
@@ -28,9 +36,14 @@
 
  Output: 3
 ```
-**分析** 该题目至少有三种解法，UF/DFS/BFS，UF唯一需要注意的是union的条件(2D校验)&&union时根据rank缩短树的高度
+
+题目描述：2D网格中1为陆地，0为水面，计算岛屿的数量；岛屿是由连通的陆地组成并且被水包围；假设网格周围都为水面。
+
+
+**分析** 该题目至少有三种解法，UF/DFS/BFS
  
-```class Solution {
+```java
+class Solution {
     class UnionFind {
         private int[] union;
         private int size = 0;
