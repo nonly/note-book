@@ -1,6 +1,6 @@
 # 并查集(UnionFind)
 ### [200] Number of Islands
-> class Solution {
+```class Solution {
     class UnionFind {
         private int[] union;
         private int size = 0;
@@ -69,5 +69,5 @@
         }
         return unionFind.getSize();
     }
-}
+}```
 
