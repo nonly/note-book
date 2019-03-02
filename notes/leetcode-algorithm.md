@@ -1,6 +1,7 @@
 <!-- GFM-TOC -->
 * [并查集](#并查集)
-  * [岛屿的数量](#岛屿的数量)
+  * [岛屿的数量1](#岛屿的数量1)
+  * [岛屿的数量2](#岛屿的数量2)
 <!-- GFM-TOC -->
 
 
@@ -9,9 +10,7 @@
 并查集主要解决连通区域问题，UF唯一需要注意的是union的条件；
 《算法》中比较过各种UF算法性能，quickFind的union复杂度N；quickUnion的union和find复杂度均为树的高度；加权quickUnion复杂度均为lgN；路径压缩的加权quickUnion算法复杂度接近为1；
 
-#### 岛屿的数量
-
-**岛屿的数量1  Number of Islands1**
+#### 岛屿的数量1
 
 [200. Number of Islands (Medium)](https://leetcode.com/problems/number-of-islands/)
 
@@ -120,7 +119,7 @@ class Solution {
 }
 ```
 
-**岛屿的数量2  Number of Islands2**
+#### 岛屿的数量2
 
 [305. Number of Islands II (Hard)](https://leetcode.com/problems/number-of-islands-ii/)
 
