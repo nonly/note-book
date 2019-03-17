@@ -45,7 +45,10 @@ Output:  1
 
 ```java
 public class Solution {
+    // 搜索区域
     private Map<Integer, List<Integer>> relation = new HashMap<>();
+    
+    // 已搜索的标志，当然也可以用Set
     private boolean[] hasSearch;
 
     public int countComponents(int n, int[][] edges) {
@@ -57,12 +60,15 @@ public class Solution {
             relation.put(i, new LinkedList<>());
         }
 
+        // 关键：构建一个搜索区域，不像《岛屿的数量》题目直接构建好了搜索区域int[][] grid;
         for (int i = 0; i < edges.length; i++) {
             relation.get(edges[i][0]).add(edges[i][1]);
             relation.get(edges[i][1]).add(edges[i][0]);
         }
 
         int count = 0;
+        
+        // 连通图问题的计算数量的模版
         for (int i = 0; i < n; i++) {
             if (!hasSearch[i]) {
                 dfs(i);
