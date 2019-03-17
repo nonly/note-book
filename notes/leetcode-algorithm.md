@@ -150,7 +150,83 @@ public class Solution {
 
 ```
 
+#### 去除无效的括号
 
+[301. Remove Invalid Parentheses](https://leetcode.com/problems/remove-invalid-parentheses/)
+
+```
+ Hard (38.6%)
+ Cost: 15min
+```
+
+```html
+Input: "()())()"
+Output: ["()()()", "(())()"]
+```
+
+```html
+Input: "(a)())()"
+Output: ["(a)()()", "(a())()"]
+```
+
+```html
+Input: ")("
+Output: [""]
+```
+
+题目描述：去除最小数量的无效括号，保证输入的括号有效，输出所有可能。
+
+> **分析** 此题适合BFS，按照删除的字符数量来分层，每个节点的子节点数量<=当前字符串的长度；因为涉及到最小数量，BFS可以知道满足条件的level，及时停止搜索；每层表示 - 去除${level}个括号的字符串；root是原字符串，第一层是去除一个括号的字符串；
+
+```java
+public class P301_RemoveInvalidParentheses {
+    public List<String> removeInvalidParentheses(String s) {
+        List<String> res = new LinkedList<>();
+        Queue<String> queue = new LinkedList<>();
+        Set<String> visited = new HashSet<>();
+        queue.add(s);
+        boolean found = false;
+        while (!queue.isEmpty()) {
+            String cur = queue.poll();
+            if (isValidParentheses(cur)) {
+                res.add(cur);
+                found = true;
+            }
+
+            if (found) {
+                continue;
+            }
+
+            for (int i = 0; i < cur.length(); i++) {
+                if (cur.charAt(i) != '(' && cur.charAt(i) != ')') {
+                    continue;
+                }
+                String sub = cur.substring(0, i) + (i == cur.length() - 1 ? "" : cur.substring(i + 1));
+                if (visited.add(sub)) {
+                    queue.offer(sub);
+                }
+            }
+        }
+        return res;
+    }
+
+    private boolean isValidParentheses(String s) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char x = s.charAt(i);
+            if (x == '(') {
+                count++;
+            } else if (x == ')') {
+                count--;
+            }
+            if (count < 0) {
+                return false;
+            }
+        }
+        return  count == 0;
+    }
+}
+```
 
 ## 并查集
 
