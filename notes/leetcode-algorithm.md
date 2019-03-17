@@ -1,9 +1,87 @@
 <!-- GFM-TOC -->
+* [深度优先搜索](#DFS)
+  * [连通问题搜索-无向图连通元素的数量](#无向图连通元素的数量)
 * [并查集](#并查集)
   * [静态连通问题-岛屿的数量1](#岛屿的数量1)
   * [动态连通问题-岛屿的数量2](#岛屿的数量2)
 <!-- GFM-TOC -->
 
+## DFS
+
+深度优先搜索，采用函数栈区进行搜索，一般采用一些数据结构作为已搜索的标记；唯一需要注意的是题目切入点以及中止条件
+
+#### 无向图连通元素的数量
+
+🔒[323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
+
+```
+ Medium (51.4%)
+ Cost: 15min
+```
+
+```html
+Input: n = 5 and edges = [[0, 1], [1, 2], [3, 4]]
+
+     0          3
+     |          |
+     1 --- 2    4 
+
+Output: 2
+```
+
+```html
+Input: n = 5 and edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
+
+     0           4
+     |           |
+     1 --- 2 --- 3
+
+Output:  1
+```
+
+题目描述：一张含n节点的无向图，以及一组无向边，编写一个函数来查找无向图中连接的组件的数量。
+
+> **分析** 解法DFS/BFS/并查集，DFS时间复杂度O(e + n), 并查集时间复杂度O(e + n)(路径压缩的权重quickUnion算法union接近O(1));e是edges的长度，n是节点数量
+
+```java
+public class Solution {
+    private Map<Integer, List<Integer>> relation = new HashMap<>();
+    private boolean[] hasSearch;
+
+    public int countComponents(int n, int[][] edges) {
+        if (n < 1) {
+            return 0;
+        }
+        hasSearch = new boolean[n];
+        for (int i = 0; i < n; i++) {
+            relation.put(i, new LinkedList<>());
+        }
+
+        for (int i = 0; i < edges.length; i++) {
+            relation.get(edges[i][0]).add(edges[i][1]);
+            relation.get(edges[i][1]).add(edges[i][0]);
+        }
+
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            if (!hasSearch[i]) {
+                dfs(i);
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void dfs(int i) {
+        for (Integer son : relation.get(i)) {
+            if (!hasSearch[son]) {
+                hasSearch[son] = true;
+                dfs(son);
+            }
+        }
+    }
+}
+```
 
 ## 并查集
 
