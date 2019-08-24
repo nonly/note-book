@@ -1,4 +1,6 @@
 <!-- GFM-TOC -->
+* [动态规划](#DP)
+  * [分治思想与top-down和bottom-up思想 - 吹爆气球](#吹爆气球)
 * [深度优先搜索](#DFS)
   * [连通问题搜索-无向图连通元素的数量](#无向图连通元素的数量)
 * [广度优先搜索](#BFS)
@@ -8,6 +10,38 @@
   * [静态连通问题-岛屿的数量1](#岛屿的数量1)
   * [动态连通问题-岛屿的数量2](#岛屿的数量2)
 <!-- GFM-TOC -->
+
+## DP
+
+#### 吹爆气球
+
+[312. Burst Balloons](https://leetcode.com/problems/burst-balloons/)
+
+> **分析** 如何从n！优化还是挺难的，首先分治思想，然后是如何解决吹爆气球后数组不连续问题。dp[left][right]表示从left到right的最大值； dp[left][right] = Math.max(dp[left][right], nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]); 可以用top-down回溯，cache住中间结果即可；下面给出bottom-up dp解法；
+
+```java
+class Solution {
+       public int maxCoins(int[] iNums) {
+            int[] nums = new int[iNums.length + 2];
+            nums[0] = nums[iNums.length + 1] = 1;
+            int index = 1;
+            for (int x : iNums) {
+                nums[index++] = x;
+            }
+            int N = nums.length;
+            int[][] dp = new int[N][N];
+
+            for (int left = N - 2; left > -1; left--) {
+                for (int right = left + 2; right < N; right++) {
+                    for (int i = left + 1; i < right; i++) {
+                        dp[left][right] = Math.max(dp[left][right], nums[left] * nums[i] * nums[right] + dp[left][i] + dp[i][right]);
+                    }
+                }
+            }
+            return dp[0][N-1];
+    }
+}
+```
 
 ## DFS
 
